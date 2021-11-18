@@ -45,12 +45,24 @@ async function run(){
     const appoinmentsCollections = database.collection('appoinments');
     const usersCollections = database.collection('users');
 
+    // app.get('/appoinments', verifyToken, async(req, res) => {
+    //   const email = req.query.email;
+    //   const date = req.query.date;
+    //   // console.log(date, "Date");
+    //   console.log(email, "Email");
+    //   const query = {email: email, date: date};
+    //   const cursor = appoinmentsCollections.find({});
+    //   // console.log(query, "Query");
+    //   const appoinments = await cursor.toArray();
+    //   res.json(appoinments);
+    // })
+
     app.get('/appoinments', verifyToken, async(req, res) => {
       const email = req.query.email;
-      const date = new Date(req.query.date).toLocaleDateString();
-      console.log(date);
+      const date = req.query.date;
+      console.log(email, date, "ED");
       const query = {email: email, date: date};
-      console.log(query);
+      console.log(date);
       const cursor = appoinmentsCollections.find(query);
       const appoinments = await cursor.toArray();
       res.json(appoinments);
