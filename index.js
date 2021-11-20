@@ -7,7 +7,6 @@ const port = process.env.port || 5000;
 require('dotenv').config()
 
 // doctor-portal-firebase-adminsdk.json
-
 const serviceAccount = require('./doctor-portal-firebase-adminsdk.json');
 
 admin.initializeApp({
@@ -60,7 +59,6 @@ async function run(){
     app.get('/appoinments', verifyToken, async(req, res) => {
       const email = req.query.email;
       const date = req.query.date;
-      console.log(email, date, "ED");
       const query = {email: email, date: date};
       console.log(date);
       const cursor = appoinmentsCollections.find(query);
